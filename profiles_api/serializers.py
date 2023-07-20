@@ -42,3 +42,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
     def destroy(self, instance, validated_data):
         """Handles deleting user account"""
         return
+
+
+class ProfileFeedItemSerializer(serializers.ModelSerializer):
+    """Serializes profile feed items"""
+
+    class Meta:
+        model = models.ProfileFeedItem
+        fields = ('id', 'user_profile', 'status_text', 'created_on')
+        extra_kwargs = {'user_profile': {'read_only': True}}
